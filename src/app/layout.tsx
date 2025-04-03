@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/sidebar";
 import Header from "@/components/header";
-import { ThemeProvider } from "@/components/ui/theme-provider"
+import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Providers } from "@/lib/providers";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -28,27 +28,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en"  suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Providers>
-        <div className="flex h-screen overflow-hidden">
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Providers>
+            <div className="flex h-screen overflow-hidden">
               <Sidebar />
               <div className="flex flex-col flex-1 overflow-hidden">
                 <Header />
-                <main className="flex-1 overflow-y-auto p-4 md:p-6">{children}</main>
+                <main className="flex-1 overflow-y-auto p-4 md:p-6">
+                  {children}
+                </main>
               </div>
             </div>
             <Toaster />
-            </Providers>
-            </ThemeProvider>
+          </Providers>
+        </ThemeProvider>
       </body>
     </html>
   );
