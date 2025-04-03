@@ -5,8 +5,10 @@ import { getWeatherByCity, getWeatherHistory } from "@/lib/api/weather";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
-
-async function CityPage({params} : {params : {city : string}}) {
+interface CityPageProps {
+    params: { city: string };
+}
+async function CityPage({ params }: CityPageProps) {
 
     const city =  decodeURIComponent(params.city);
     try {
