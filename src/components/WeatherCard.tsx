@@ -1,10 +1,10 @@
 "use Client";
 
-import { AppDispatch } from '@/lib/store';
+
 import { WeatherData } from '@/lib/types';
 import Link from 'next/link';
 import React from 'react'
-import { useDispatch,useSelector } from 'react-redux';
+
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Star } from 'lucide-react';

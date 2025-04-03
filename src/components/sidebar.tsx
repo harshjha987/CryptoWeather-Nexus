@@ -1,5 +1,5 @@
 "use client";
-import Home from '@/app/page';
+
 import { cn } from '@/lib/utils';
 import { Cloud, HomeIcon, Newspaper, TrendingUp } from 'lucide-react';
 import Link from 'next/link';

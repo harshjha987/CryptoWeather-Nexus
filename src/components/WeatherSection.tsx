@@ -1,7 +1,7 @@
 "use client";
 import {useEffect} from "react"
 import React from 'react'
-import { useDispatch, UseDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { ArrowRight, Cloud } from 'lucide-react';
 import type { RootState , AppDispatch } from '@/lib/store';
