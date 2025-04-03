@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="space-y-6" >
      <DashBoardHeader />
-     <div className="grid gap-5 md:grid-cols-3">
+     <div className="grid gap-6 md:grid-cols-3">
       <Suspense fallback = {<Skeleton className="
       h-[400px] w-full" />}>
         <WeatherSection />
@@ -19,7 +19,7 @@ export default function Home() {
         <CryptoSection  />
       </Suspense>
       <Suspense fallback = {<Skeleton className="
-      h-[400px] w-full" />}>
+      h-[400px] w-full " />}>
         <NewsSection  />
       </Suspense>
       
