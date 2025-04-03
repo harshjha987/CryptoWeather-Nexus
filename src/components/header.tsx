@@ -5,8 +5,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
+  
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from './ui/button'
@@ -21,7 +20,7 @@ function Header() {
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b-2 bg-background px-4 md:px-6">
       <div className='flex-1'>
         <Link href= "/" className='text-xl font-bold'>
-        Dashboard
+        CryptoWeather Nexus
         </Link>
       </div>
       <div className='flex items-center gap-2'>
