@@ -6,15 +6,16 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     city: string;
-  };
-  searchParams: { [key: string]: string | string[] | undefined };
+  }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-async function CityPage({ params }: PageProps) {
-  const paramsData = await Promise.resolve(params);
-  const city = decodeURIComponent(paramsData.city);
+async function CityPage(props: PageProps) {
+  const params = await props.params;
+  //   const paramsData = await Promise.resolve(params);
+  const city =  decodeURIComponent(params.city);
   try {
     const weatherData = await getWeatherByCity(city);
     if (weatherData.cod && weatherData.cod !== 200) {
