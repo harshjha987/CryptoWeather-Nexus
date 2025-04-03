@@ -59,7 +59,7 @@ export async function getWeatherForCities(cities: string[]) {
       const data = await response.json()
   
       // Return the list of forecast data points
-      return data.list.slice(0, 10) // Take first 10 entries (30 hours)
+      return data.list.slice(0, 20) 
     } catch (error) {
       console.error("Failed to fetch weather history:", error)
       
