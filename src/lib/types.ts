@@ -43,3 +43,13 @@ export interface WeatherHistoryData {
         deg: number
       }
 }
+
+//news types
+
+export interface NewsData{
+    title : string
+    description : string
+    url : string
+    source : string
+    publishedAt : string
+}

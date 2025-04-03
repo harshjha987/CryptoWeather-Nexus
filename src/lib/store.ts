@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import weatherReducer from "./features/weather/weatherSlice"
+import newsReducer from "./features/news/newsSlice"
 export const store = configureStore({
     reducer : {
-        weather : weatherReducer
+        weather : weatherReducer,
+        news : newsReducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({ serializableCheck: false }),
