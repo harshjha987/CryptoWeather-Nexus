@@ -5,12 +5,18 @@ import { getWeatherByCity, getWeatherHistory } from "@/lib/api/weather";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
-interface CityPageProps {
-    params: { city: string };
-}
-async function CityPage({ params }: CityPageProps) {
+interface PageProps {
+    params: {
+      city: string
+    }
+    searchParams: { [key: string]: string | string[] | undefined }
+  }
 
-    const city =  decodeURIComponent(params.city);
+ 
+async function CityPage({ params }: PageProps) {
+
+    const paramsData = await Promise.resolve(params)
+  const city = decodeURIComponent(paramsData.city)
     try {
         const weatherData = await getWeatherByCity(city);
         if (weatherData.cod && weatherData.cod !== 200) {
