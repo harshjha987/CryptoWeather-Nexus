@@ -18,8 +18,8 @@ interface PageProps {
 
 export default async function CryptoPage(props : PageProps){
    
-    const { id } = await props.params  // ✅ Await the whole `params` object
-  const decodedId = decodeURIComponent(id)
+    const params = await props.params  // ✅ Await the whole `params` object
+  const decodedId = decodeURIComponent(params.id)
 
     try {
         const cryptoData = await getCryptoById(decodedId)
