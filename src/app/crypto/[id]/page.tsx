@@ -9,13 +9,12 @@ import { Suspense } from "react"
 
 
 interface PageProps {
-    params: {
-      id: string
-    }
+    params: Promise<{ id: string }>
     searchParams: {
       [key: string]: string | string[] | undefined
     }
   }
+  
 
 export default async function CryptoPage(props : PageProps){
    
