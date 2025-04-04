@@ -45,7 +45,7 @@ useEffect(()=>{
     if (isRecent) {
       // Play a notification sound
       try {
-        const audio = new Audio("/notification-sound.mp3")
+        const audio = new Audio("/notifi.mp3")
         audio.volume = 0.5
         audio.play().catch((e) => console.log("Error playing notification sound:", e))
       } catch (error) {
