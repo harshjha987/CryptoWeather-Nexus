@@ -1,3 +1,4 @@
+
 import { CryptoDetails } from "@/components/CryptoDetails"
 import { CryptoMetrics } from "@/components/CryptoMetrics"
 import { CryptoPriceChart } from "@/components/CryptoPriceChart"
@@ -8,21 +9,22 @@ import { Suspense } from "react"
 
 
 interface PageProps {
-    params:{
-        id : string
+    params: {
+      id: string
     }
-    searchParams : {
-        [key : string] : string | string[] | undefined
+    searchParams: {
+      [key: string]: string | string[] | undefined
     }
-}
+  }
 
 export default async function CryptoPage(props : PageProps){
    
-    const id = decodeURIComponent(props.params.id)
+    const { id } = await props.params  // ✅ Await the whole `params` object
+  const decodedId = decodeURIComponent(id)
 
     try {
-        const cryptoData = await getCryptoById(id)
-        const historyData = await getCryptoHistory(id)
+        const cryptoData = await getCryptoById(decodedId)
+        const historyData = await getCryptoHistory(decodedId)
 
         return (
             <div className="space-y-6">
@@ -38,7 +40,7 @@ export default async function CryptoPage(props : PageProps){
                     </Suspense>
                     </div>
                     <Suspense fallback = {<Skeleton className="h-[200px] w-full" />}>
-                   <CryptoMetrics id = {id} />
+                   <CryptoMetrics id = {decodedId} />
                     </Suspense>
                
 
