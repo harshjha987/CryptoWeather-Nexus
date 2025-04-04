@@ -11,6 +11,15 @@ interface PageProps {
   }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
+export async function generateMetadata(props: PageProps) {
+  // Await the params object before using it
+  const params = await props.params;
+  const city =  decodeURIComponent(params.city);
+  return {
+    title: `${city} Weather | Dashboard`,
+    description: `Weather details for ${city}`,
+  }
+}
 
 async function CityPage(props: PageProps) {
   const params = await props.params;

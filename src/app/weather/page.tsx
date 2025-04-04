@@ -2,6 +2,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 import WeatherCard from "@/components/WeatherCard";
 import { getWeatherForCities } from "@/lib/api/weather";
 import React, { Suspense } from "react";
+export const metadata = {
+  title: "Weather | Dashboard",
+  description: "Weather information for major cities",
+}
 
 async function page() {
   const cities = [

@@ -3,6 +3,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getNews } from "@/lib/api/news";
 import React, { Suspense } from "react";
 
+export const metadata = {
+  title: "News | Dashboard",
+  description: "Latest cryptocurrency and financial news",
+}
+
 function page() {
   return (
     <div className="space-y-6">

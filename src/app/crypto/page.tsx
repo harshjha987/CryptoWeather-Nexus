@@ -3,6 +3,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getCryptos } from "@/lib/api/crypto";
 import React, { Suspense } from "react";
 
+
+export const metadata = {
+  title: "Cryptocurrencies | Dashboard",
+  description: "Live cryptocurrency prices and market data",
+}
+
 function page() {
 
   const cryptoIds = [
