@@ -8,17 +8,16 @@ interface CryptoDetailsProps{
     data : CryptoData
 }
 
-export function CryptoDetails({data} : CryptoDetailsProps){
-const priceChangePercent = Number.parseFloat(data.price_change_percentage_24h)
+export function CryptoDetails({ data }: CryptoDetailsProps) {
+  const priceChangePercent = Number.parseFloat(data.price_change_percentage_24h)
   const isPriceUp = priceChangePercent >= 0
 
   return (
     <Card>
-        <CardHeader>
-            <CardTitle>Market Overview</CardTitle>
-
-        </CardHeader>
-        <CardContent>
+      <CardHeader>
+        <CardTitle>Market Overview</CardTitle>
+      </CardHeader>
+      <CardContent>
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <div>
@@ -68,7 +67,8 @@ const priceChangePercent = Number.parseFloat(data.price_change_percentage_24h)
             </div>
           </div>
         </div>
-        </CardContent>
+      </CardContent>
     </Card>
   )
 }
+

@@ -24,6 +24,9 @@ export default async function CryptoPage(props : PageProps){
     try {
         const cryptoData = await getCryptoById(decodedId)
         const historyData = await getCryptoHistory(decodedId)
+        if (!cryptoData || !historyData) {
+            return notFound()
+          }
 
         return (
             <div className="space-y-6">
@@ -32,7 +35,7 @@ export default async function CryptoPage(props : PageProps){
                 </h1>
                 <div className="grid gap-6 md:grid-cols-2">
                     <Suspense fallback = {<Skeleton className="h-[300px] w-full" />}>
-                    <CryptoDetails data ={cryptoData} />
+                    <CryptoDetails data= {cryptoData} />
                     </Suspense>
                     <Suspense fallback = {<Skeleton className="h-[300px] w-full" />}>
                     <CryptoPriceChart data={historyData} />
