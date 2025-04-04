@@ -59,8 +59,8 @@ function CryptoSection() {
     )
 
     return () => {
+      cleanup() // close WS
       clearInterval(intervalId)
-      cleanup()
       console.log = originalConsoleLog
       console.error = originalConsoleError
     }

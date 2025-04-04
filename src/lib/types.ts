@@ -89,3 +89,17 @@ export interface CryptoHistoryData {
   price: number
   volume: number
 }
+
+//News data
+export interface Notification{
+  id : string
+  type: "price_alert" | "weather_alert" | "news_alert"
+  title: string
+  message: string
+  timestamp: number
+  data: {
+    [key: string]: any
+  }
+
+
+}

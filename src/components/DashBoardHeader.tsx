@@ -7,7 +7,7 @@ function DashBoardHeader() {
         className="text-3xl
         font-bold tracking-tight"
       >
-        Dashboard
+        Welcome!
       </h1>
       <p className="text-muted-foreground">
         Monitor weather , cryptocurrencies, and news in real-time.

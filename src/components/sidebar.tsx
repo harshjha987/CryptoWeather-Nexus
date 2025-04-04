@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-function Sidebar() {
+function Sidebar({ isSheet = false }: { isSheet?: boolean }) {
   const pathname = usePathname();
   const routes = [
     {
@@ -31,10 +31,10 @@ function Sidebar() {
     },
   ];
   return (
-    <aside
-      className="hidden border-r bg-background 
-        md:block md:w-64"
-    >
+    <aside className={cn(
+      isSheet ? "block w-full" : "hidden md:block md:w-64",
+      "border-r bg-background"
+    )}>
       <div className="flex h-full flex-col gap-2 p-4">
         <div
           className="flex h-14 items-center border-b

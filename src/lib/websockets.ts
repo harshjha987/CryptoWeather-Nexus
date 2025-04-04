@@ -1,8 +1,9 @@
 "use client"
-// import {v4 as uuidv4} from "uuid"
+import {v4 as uuidv4} from "uuid"
 import { store } from "./store"
 import { updateCryptoPrice } from "./features/crypto/cryptoSlice"
 const CRYPTO_API_KEY = process.env.NEXT_PUBLIC_CRYPTO_API_KEY
+import { addNotification } from "./features/notifications/notificationSlice"
 
 export function initializeWebSocket() {
     let ws: WebSocket | null = null
@@ -23,8 +24,7 @@ export function initializeWebSocket() {
         // Connect to CoinCap WebSocket API
         // Note: CoinCap's WebSocket API doesn't use authentication in the connection URL
         ws = new WebSocket(
-          `wss://wss.coincap.io/prices?assets=bitcoin,ethereum,ripple,cardano,solana,polkadot,dogecoin,litecoin,chainlink
-          usdc&apiKey=${CRYPTO_API_KEY}`,
+          `wss://wss.coincap.io/prices?assets=bitcoin,ethereum,ripple,cardano,solana,polkadot,dogecoin,litecoin,chainlink&apiKey=${CRYPTO_API_KEY}`,
         )
   
         ws.onopen = () => {
@@ -143,23 +143,23 @@ export function initializeWebSocket() {
         }),
       )
   
-      // If price change is significant (more than 1%), add a notification
-    //   if (Math.abs(priceChangePercent) > 1) {
-    //     const direction = priceChangePercent > 0 ? "up" : "down"
-    //     store.dispatch(
-    //       addNotification({
-    //         id: uuidv4(),
-    //         type: "price_alert",
-    //         title: `${crypto.name} Price Alert`,
-    //         message: `${crypto.name} price has gone ${direction} by ${Math.abs(priceChangePercent).toFixed(2)}%`,
-    //         timestamp: Date.now(),
-    //         data: {
-    //           cryptoId: cryptoId,
-    //           priceChange: priceChangePercent,
-    //         },
-    //       }),
-    //     )
-    //   }
+    //   If price change is significant (more than 1%), add a notification
+      if (Math.abs(priceChangePercent) > 1) {
+        const direction = priceChangePercent > 0 ? "up" : "down"
+        store.dispatch(
+          addNotification({
+            id: uuidv4(),
+            type: "price_alert",
+            title: `${crypto.name} Price Alert`,
+            message: `${crypto.name} price has gone ${direction} by ${Math.abs(priceChangePercent).toFixed(2)}%`,
+            timestamp: Date.now(),
+            data: {
+              cryptoId: cryptoId,
+              priceChange: priceChangePercent,
+            },
+          }),
+        )
+      }
     })
   }
   
@@ -187,22 +187,22 @@ export function initializeWebSocket() {
     )
   
     // If price change is significant (more than 1.5%), add a notification
-    // if (Math.abs(priceChangePercent) > 1.5) {
-    //   const direction = priceChangePercent > 0 ? "up" : "down"
-    //   store.dispatch(
-    //     addNotification({
-    //       id: uuidv4(),
-    //       type: "price_alert",
-    //       title: `${crypto.name} Price Alert`,
-    //       message: `${crypto.name} price has gone ${direction} by ${Math.abs(priceChangePercent).toFixed(2)}%`,
-    //       timestamp: Date.now(),
-    //       data: {
-    //         cryptoId: randomCrypto,
-    //         priceChange: priceChangePercent,
-    //       },
-    //     }),
-    //   )
-    // }
+    if (Math.abs(priceChangePercent) > 1.5) {
+      const direction = priceChangePercent > 0 ? "up" : "down"
+      store.dispatch(
+        addNotification({
+          id: uuidv4(),
+          type: "price_alert",
+          title: `${crypto.name} Price Alert`,
+          message: `${crypto.name} price has gone ${direction} by ${Math.abs(priceChangePercent).toFixed(2)}%`,
+          timestamp: Date.now(),
+          data: {
+            cryptoId: randomCrypto,
+            priceChange: priceChangePercent,
+          },
+        }),
+      )
+    }
   }
   
   function simulateWeatherAlert() {
@@ -218,19 +218,19 @@ export function initializeWebSocket() {
   
     const randomAlert = alertTypes[Math.floor(Math.random() * alertTypes.length)]
   
-    // store.dispatch(
-    //   addNotification({
-    //     id: uuidv4(),
-    //     type: "weather_alert",
-    //     title: `${randomCity} - ${randomAlert.type} Alert`,
-    //     message: randomAlert.message,
-    //     timestamp: Date.now(),
-    //     data: {
-    //       city: randomCity,
-    //       alertType: randomAlert.type,
-    //     },
-    //   }),
-    // )
+    store.dispatch(
+      addNotification({
+        id: uuidv4(),
+        type: "weather_alert",
+        title: `${randomCity} - ${randomAlert.type} Alert`,
+        message: randomAlert.message,
+        timestamp: Date.now(),
+        data: {
+          city: randomCity,
+          alertType: randomAlert.type,
+        },
+      }),
+    )
   }
   
   
