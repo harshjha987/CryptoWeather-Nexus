@@ -40,7 +40,8 @@ export async function getCryptoById(id : string){
             {
                 headers : {
                     Authorization : `Bearer ${CRYPTO_API_KEY}`
-                }
+                },
+                cache: "no-store",
             }
         )
         if(!res.ok){
@@ -52,6 +53,7 @@ export async function getCryptoById(id : string){
         
     } catch (error) {
         console.error("Failed to fetch crypto data:", error)
+        return mockCryptoData.find((crypto) => crypto.id === id) || mockCryptoData[0]
     }
 }
 
@@ -60,10 +62,10 @@ export async function getCryptos(ids: string[]) {
     // CoinCap doesn't support filtering by multiple IDs in one request,
     // so we'll get all assets and filter them
     const response = await fetch(`https://rest.coincap.io/v3/assets?limit=20`, {
-      headers: CRYPTO_API_KEY
-        ? { Authorization: `Bearer ${CRYPTO_API_KEY}` }
-        : undefined,
-    
+      headers: {
+        Authorization: `Bearer ${CRYPTO_API_KEY}`,
+      },
+      cache: "no-store",
     })
 
     if (!response.ok) {
@@ -82,6 +84,7 @@ export async function getCryptos(ids: string[]) {
     return data.data.map(formatCryptoData)
   } catch (error) {
     console.error("Failed to fetch crypto data:", error)
+    return mockCryptoData.filter((crypto) => ids.includes(crypto.id))
     
    
   }
@@ -93,6 +96,7 @@ export async function getCryptoHistory(id : string){
             headers: {
               Authorization: `Bearer ${CRYPTO_API_KEY}`,
             },
+            cache: "no-store",
           })
           if(!response.ok){
             throw new Error(`Crypto api error : ${response.status}`);
@@ -107,6 +111,7 @@ export async function getCryptoHistory(id : string){
         
     } catch (error) {
         console.error("Failed to fetch crypto history:", error)
+        return mockCryptoHistoryData
     }
 }
 
@@ -116,6 +121,7 @@ export async function getCryptoMetrics(id : string){
             headers: {
               Authorization: `Bearer ${CRYPTO_API_KEY}`,
             },
+            cache: "no-store",
           })
       
           if (!response.ok) {
@@ -137,6 +143,110 @@ export async function getCryptoMetrics(id : string){
       explorer: asset.explorer || "N/A",
           }
     } catch (error) {
-        
+      console.error("Failed to fetch crypto metrics:", error)
+      return {
+        market_cap_rank: 1,
+        liquidity_score: 89.5,
+        public_interest_score: 76.2,
+        community_score: 82.7,
+        developer_score: 93.1,
+        sentiment_votes_up_percentage: 78,
+        sentiment_votes_down_percentage: 22,
+        price_change_percentage_7d: 5.2,
+        price_change_percentage_30d: -2.8,
+        price_change_percentage_1y: 42.5,
+      }
     }
 }
+
+// Keep the mock data as fallback
+const mockCryptoData = [
+  {
+    id: "bitcoin",
+    symbol: "btc",
+    name: "Bitcoin",
+    image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png",
+    current_price: 50000,
+    market_cap: 950000000000,
+    market_cap_rank: 1,
+    fully_diluted_valuation: 1050000000000,
+    total_volume: 30000000000,
+    high_24h: 51000,
+    low_24h: 49000,
+    price_change_24h: 1000,
+    price_change_percentage_24h: "2.04",
+    market_cap_change_24h: 20000000000,
+    market_cap_change_percentage_24h: 2.15,
+    circulating_supply: 19000000,
+    total_supply: 21000000,
+    max_supply: 21000000,
+    ath: 69000,
+    ath_change_percentage: -27.54,
+    ath_date: "2021-11-10T14:24:11.849Z",
+    atl: 67.81,
+    atl_change_percentage: 73732.54,
+    atl_date: "2013-07-06T00:00:00.000Z",
+    last_updated: "2023-06-01T12:00:00.000Z",
+  },
+  {
+    id: "ethereum",
+    symbol: "eth",
+    name: "Ethereum",
+    image: "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
+    current_price: 3000,
+    market_cap: 360000000000,
+    market_cap_rank: 2,
+    fully_diluted_valuation: 360000000000,
+    total_volume: 15000000000,
+    high_24h: 3050,
+    low_24h: 2950,
+    price_change_24h: 50,
+    price_change_percentage_24h: "1.69",
+    market_cap_change_24h: 6000000000,
+    market_cap_change_percentage_24h: 1.69,
+    circulating_supply: 120000000,
+    total_supply: 120000000,
+    max_supply: null,
+    ath: 4878.26,
+    ath_change_percentage: -38.5,
+    ath_date: "2021-11-10T14:24:19.604Z",
+    atl: 0.432979,
+    atl_change_percentage: 693033.48,
+    atl_date: "2015-10-20T00:00:00.000Z",
+    last_updated: "2023-06-01T12:00:00.000Z",
+  },
+  {
+    id: "ripple",
+    symbol: "xrp",
+    name: "XRP",
+    image: "https://assets.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png",
+    current_price: 0.5,
+    market_cap: 25000000000,
+    market_cap_rank: 6,
+    fully_diluted_valuation: 50000000000,
+    total_volume: 1000000000,
+    high_24h: 0.51,
+    low_24h: 0.49,
+    price_change_24h: 0.01,
+    price_change_percentage_24h: "2.04",
+    market_cap_change_24h: 500000000,
+    market_cap_change_percentage_24h: 2.04,
+    circulating_supply: 50000000000,
+    total_supply: 100000000000,
+    max_supply: 100000000000,
+    ath: 3.4,
+    ath_change_percentage: -85.29,
+    ath_date: "2018-01-07T00:00:00.000Z",
+    atl: 0.002802,
+    atl_change_percentage: 17774.89,
+    atl_date: "2014-05-22T00:00:00.000Z",
+    last_updated: "2023-06-01T12:00:00.000Z",
+  },
+]
+
+const mockCryptoHistoryData = Array.from({ length: 7 }, (_, i) => ({
+  timestamp: Date.now() - i * 86400000,
+  price: 50000 + (Math.random() - 0.5) * 5000,
+  volume: 30000000000 + (Math.random() - 0.5) * 10000000000,
+}))
+

@@ -6,6 +6,7 @@ import Header from "@/components/header";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Providers } from "@/lib/providers";
 import { Toaster } from "@/components/ui/sonner";
+import { ErrorBoundary } from "@/lib/errorBoundary";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,7 +45,7 @@ export default function RootLayout({
               <div className="flex flex-col flex-1 overflow-hidden">
                 <Header />
                 <main className="flex-1 overflow-y-auto p-4 md:p-6">
-                  {children}
+                  <ErrorBoundary>{children}</ErrorBoundary>
                 </main>
               </div>
             </div>
