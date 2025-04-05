@@ -42,13 +42,13 @@ function CryptoSection() {
       }
     }
 
-    console.error = (...args) => {
-      originalConsoleError(...args)
-      const message = args.join(" ")
-      if (message.includes("WebSocket error") || message.includes("Failed to initialize WebSocket")) {
-        setWsStatus("error")
-      }
-    }
+    // console.error = (...args) => {
+    //   originalConsoleError(...args)
+    //   const message = args.join(" ")
+    //   if (message.includes("WebSocket error") || message.includes("Failed to initialize WebSocket")) {
+    //     setWsStatus("error")
+    //   }
+    // }
 
     // Refresh crypto data every 5 minutes
     const intervalId = setInterval(
