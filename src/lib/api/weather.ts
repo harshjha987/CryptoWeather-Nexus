@@ -6,9 +6,7 @@ export async function getWeatherByCity(city: string) {
       `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&appid=${WEATHER_API_KEY}`,
       {
         
-          headers : {
-            Authorization : `Bearer ${WEATHER_API_KEY}`
-        },
+          
         cache: "no-store",
       }
     );
@@ -30,9 +28,7 @@ export async function getWeatherForCities(cities: string[]) {
       fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&appid=${WEATHER_API_KEY}`,
         {
-          headers : {
-            Authorization : `Bearer ${WEATHER_API_KEY}`
-        },
+          
         
           cache: "no-store",
         }
@@ -59,9 +55,7 @@ export async function getWeatherHistory(city: string) {
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`,
       {
-        headers : {
-          Authorization : `Bearer ${WEATHER_API_KEY}`
-      },
+        
         cache: "no-store",
       }
     );
