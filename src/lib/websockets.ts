@@ -27,7 +27,10 @@ export function initializeWebSocket() {
       // Note: CoinCap's WebSocket API doesn't use authentication in the connection URL
       ws = new WebSocket(
         `wss://wss.coincap.io/prices?assets=bitcoin,ethereum,ripple,cardano,solana,polkadot,dogecoin,litecoin,chainlink&apiKey=${CRYPTO_API_KEY}`,
-      )
+        
+    
+      ),
+      
 
       ws.onopen = () => {
         console.log("WebSocket connection established")

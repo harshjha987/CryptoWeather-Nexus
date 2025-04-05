@@ -5,6 +5,9 @@ export async function getNews() {
     const res = await fetch(
       `https://newsdata.io/api/1/latest?apikey=${NEWS_API_KEY}&q=cryptocurrency&language=en`,
       {
+        headers : {
+          Authorization : `Bearer ${NEWS_API_KEY}`
+      },
         cache: "no-store",
       }
     );

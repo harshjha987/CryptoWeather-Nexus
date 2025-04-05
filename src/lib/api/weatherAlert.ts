@@ -25,7 +25,12 @@ export async function fetchWeatherAlerts(city: { name: string; lat: number; lon:
     // Using OpenWeatherMap One Call API which includes alerts
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&exclude=minutely,hourly&appid=${WEATHER_API_KEY}`,
-      { cache: "no-store" },
+      {
+        headers : {
+        Authorization : `Bearer ${WEATHER_API_KEY}`
+    },
+       cache: "no-store" ,
+  }
     )
 
     if (!response.ok) {
