@@ -54,7 +54,7 @@ function NewsSection() {
           <div className="rounded-md bg-destructive/15 p-4 text-center text-destructive">
             {error || "Failed to load news data"}
           </div>
-        ) : data.length === 0 ? (
+        ) : data?.length === 0 ? (
           <div className="p-4 text-center text-muted-foreground">
             No news articles available at the moment
           </div>

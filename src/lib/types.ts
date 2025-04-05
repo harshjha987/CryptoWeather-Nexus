@@ -103,3 +103,10 @@ export interface Notification{
 
 
 }
+
+//favourite types 
+
+export interface FavouritesData{
+  id : string
+  name : string
+}

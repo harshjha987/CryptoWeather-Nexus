@@ -3,7 +3,7 @@ const NEWS_API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY;
 export async function getNews() {
   try {
     const res = await fetch(
-      `https://newsdata.io/api/1/news?apikey=${NEWS_API_KEY}&q=cryptocurrency&language=en`,
+      `https://newsdata.io/api/1/latest?apikey=${NEWS_API_KEY}&q=cryptocurrency&language=en`,
     );
 
     if (!res.ok) {
