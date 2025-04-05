@@ -1,3 +1,4 @@
+"use client"
 import { Skeleton } from "@/components/ui/skeleton";
 import WeatherCard from "@/components/WeatherCard";
 import { getWeatherForCities } from "@/lib/api/weather";
