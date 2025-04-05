@@ -1,3 +1,5 @@
+
+"use client"
 // Crypto price alerts implementation
 import { v4 as uuidv4 } from "uuid"
 import { store } from "@/lib/store"

@@ -1,3 +1,4 @@
+"use client"
 // News monitoring implementation
 import { v4 as uuidv4 } from "uuid"
 import { store } from "@/lib/store"

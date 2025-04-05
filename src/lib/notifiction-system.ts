@@ -1,4 +1,8 @@
+
+
+"use client"
 // Central notification system to manage all real-time alerts
+
 import { startWeatherAlertMonitoring } from "./api/weatherAlert"
 import { startNewsMonitoring } from "./api/newsMonitor"
 import { startCryptoPriceMonitoring } from "./api/crypto-alerts"

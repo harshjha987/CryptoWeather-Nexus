@@ -1,4 +1,7 @@
+"use client"
+
 // Weather alerts API implementation
+
 import { v4 as uuidv4 } from "uuid"
 import { store } from "@/lib/store"
 import { addNotification } from "../features/notifications/notificationSlice"
