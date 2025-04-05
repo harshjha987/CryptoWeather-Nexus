@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid"
 import { store } from "@/lib/store"
 import { addNotification } from "../features/notifications/notificationSlice"
 
-const WEATHER_API_KEY = process.env.WEATHER_API_KEY
+const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY
 
 // Cities to monitor for weather alerts
 const MONITORED_CITIES = [

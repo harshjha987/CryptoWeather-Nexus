@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid"
 import { store } from "./store"
 import { updateCryptoPrice } from "./features/crypto/cryptoSlice"
 import { addNotification } from "./features/notifications/notificationSlice"
-const CRYPTO_API_KEY = process.env.CRYPTO_API_KEY
+const CRYPTO_API_KEY = process.env.NEXT_PUBLIC_CRYPTO_API_KEY
 // CoinCap WebSocket implementation with better error handling
 export function initializeWebSocket() {
   let ws: WebSocket | null = null
