@@ -1,11 +1,10 @@
-"use client"
 import { Skeleton } from "@/components/ui/skeleton";
 import WeatherCard from "@/components/WeatherCard";
 import { getWeatherForCities } from "@/lib/api/weather";
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 
 
-async function page() {
+ function page() {
   const cities = [
     "New York",
     "London",
