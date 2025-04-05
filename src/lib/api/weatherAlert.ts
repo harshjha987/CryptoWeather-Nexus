@@ -15,6 +15,8 @@ const MONITORED_CITIES = [
   { name: "Tokyo", lat: 35.6762, lon: 139.6503 },
   { name: "Paris", lat: 48.8566, lon: 2.3522 },
   { name: "Sydney", lat: -33.8688, lon: 151.2093 },
+  {name : "Kolkata", lat : 22.5744 , lon  :  88.3629},
+  {name : "Patna" , lat : 25.5941, lon : 85.1376},
 ]
 
 // Fetch weather alerts for a specific city
@@ -22,7 +24,7 @@ export async function fetchWeatherAlerts(city: { name: string; lat: number; lon:
   try {
     // Using OpenWeatherMap One Call API which includes alerts
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${city.lat}&lon=${city.lon}&exclude=minutely,hourly&appid=${WEATHER_API_KEY}`,
+      `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&exclude=minutely,hourly&appid=${WEATHER_API_KEY}`,
       { cache: "no-store" },
     )
 
